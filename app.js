@@ -1,15 +1,17 @@
-const http = require('http');
+const express = require('express');
+const app = express();
 
-const hostname = '';
-const port = process.env.PORT || 3000;
-const env = process.env.NULLSTONE_ENV || 'local';
+const port = process.env.PORT || 3000,
+    env = process.env.NULLSTONE_ENV || 'local';
 
-const server = http.createServer((req, res) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-    res.end(`Welcome to Nullstone! Nullstone Environment: ${env}`)
-});
+app.use(express.static('public'));
+app.get('/', function (req, res) {
+    res.redirect('/index.html');
+})
 
-server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
+const server = app.listen(port, () => {
+    const host = server.address().address;
+    const port = server.address().port;
+
+    console.log(`Example app listening at http://${host}:${port}`);
 });

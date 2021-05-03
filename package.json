@@ -1,0 +1,27 @@
+{
+  "name": "node-hello-world",
+  "version": "1.0.0",
+  "description": "Hello world example launched through Nullstone platform running on nodejs.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nullstone-io/node-hello-world.git"
+  },
+  "keywords": [
+    "nullstone",
+    "docker",
+    "nodejs"
+  ],
+  "author": "BSick7",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nullstone-io/node-hello-world/issues"
+  },
+  "homepage": "https://github.com/nullstone-io/node-hello-world#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

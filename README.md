@@ -2,7 +2,7 @@
 
 Hello world example launched through Nullstone platform running on nodejs.
 
-This example adapts the nodejs [getting started guide](https://nodejs.org/en/docs/guides/getting-started-guide/) to include Nullstone concepts.
+This example adapts the express [Hello world example](https://expressjs.com/en/starter/hello-world.html) to include Nullstone concepts.
 
 ## How to run locally
 
