@@ -1,9 +1,11 @@
-const express = require('express');
+const express = require('express'),
+    morgan = require('morgan');
 const app = express();
 
 const port = process.env.PORT || 3000,
     env = process.env.NULLSTONE_ENV || 'local';
 
+app.use(morgan('combined'))
 app.use(express.static('public'));
 app.get('/', function (req, res) {
     res.redirect('/index.html');
