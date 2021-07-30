@@ -196,3 +196,10 @@ a {
     font-weight: 800;
     font-style: italic;
 }
+
+.error {
+    padding: .5em;
+    border-color: rgb(197, 48, 48);
+    background-color: rgb(255, 245, 245);
+    color: rgb(197, 48, 48)
+}

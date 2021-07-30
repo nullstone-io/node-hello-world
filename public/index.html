@@ -1,30 +1,43 @@
 <html>
-<head>
-    <title>Welcome to Nullstone!</title>
-    <link rel="stylesheet" href="/assets/css/styles.css" />
-</head>
-<body>
-<main class="home">
-    <header class="hero">
-        <img src="/assets/img/hero.png" alt="hero">
-        <h1 id="main-title">Nullstone</h1>
-        <p class="description">Launch full-stack apps in minutes on your cloud</p>
-        <p class="action"><a target="_blank" href="https://nullstone.io/" class="nav-link action-button">Visit →</a></p>
-    </header>
-    <div class="features">
-        <div class="feature">
-            <h2>Standard Patterns</h2>
-            <p>Use our library of standard infrastructure patterns to launch static sites, serverless, containers, and servers across cloud providers.</p>
+    <head>
+        <title>Welcome to Nullstone!</title>
+        <link rel="stylesheet" href="/assets/css/styles.css"/>
+        <script lang="javascript">
+            document.addEventListener("DOMContentLoaded", function() {
+                fetch('/todos')
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('result').innerHTML = '<pre><code>' + JSON.stringify(data) + '</code></pre>'
+                    }).catch(error => {
+                        document.getElementById('result').innerHTML = '<div class="error">' + error + '</div>'
+                    })
+            });
+        </script>
+    </head>
+    <body>
+    <main class="home">
+        <header class="hero">
+            <img src="/assets/img/hero.png" alt="hero">
+            <h1 id="main-title">Nullstone</h1>
+            <p class="description">Launch full-stack apps in minutes on your cloud</p>
+            <p class="action"><a target="_blank" href="https://nullstone.io/" class="nav-link action-button">Visit →</a></p>
+            <div id="result"></div>
+        </header>
+        <div class="features">
+            <div class="feature">
+                <h2>Standard Patterns</h2>
+                <p>Use our library of standard infrastructure patterns to launch static sites, serverless, containers, and
+                    servers across cloud providers.</p>
+            </div>
+            <div class="feature">
+                <h2>Application Catalog</h2>
+                <p>Manage your team's applications through a single pane of glass.</p>
+            </div>
+            <div class="feature">
+                <h2>Launch new environments in minutes</h2>
+                <p>Fully launch new environments in minutes with a single click.</p>
+            </div>
         </div>
-        <div class="feature">
-            <h2>Application Catalog</h2>
-            <p>Manage your team's applications through a single pane of glass.</p>
-        </div>
-        <div class="feature">
-            <h2>Launch new environments in minutes</h2>
-            <p>Fully launch new environments in minutes with a single click.</p>
-        </div>
-    </div>
-</main>
-</body>
+    </main>
+    </body>
 </html>

@@ -1,6 +1,15 @@
 version: '3.8'
 
 services:
+  db:
+    image: postgres
+    ports:
+      - 5469:5432
+    environment:
+      - POSTGRES_USER=hw
+      - POSTGRES_PASSWORD=hw
+      - POSTGRES_DB=hw
+
   server:
     build: .
     ports:
