@@ -6,10 +6,28 @@
             document.addEventListener("DOMContentLoaded", function() {
                 fetch('/todos')
                     .then(response => response.json())
-                    .then(data => {
-                        document.getElementById('result').innerHTML = '<pre><code>' + JSON.stringify(data) + '</code></pre>'
-                    }).catch(error => {
-                        document.getElementById('result').innerHTML = '<div class="error">' + error + '</div>'
+                    .then(body => {
+                        const div = document.getElementById('result')
+                        if (body.error) {
+                            const messages = body.error.split('\n')
+                            const result = messages.reduce((array, m) => {
+                                const cleansed = m.trim()
+                                if (cleansed.length > 0) {
+                                    array.push(cleansed)
+                                }
+                                return array
+                            }, [])
+                            div.classList.add('error')
+                            div.classList.remove('success')
+                            div.innerHTML = '<pre>' + result.join('<br>') + '</pre>'
+                        } else {
+                            const items = body.data.map(todo => {
+                                return `<li>${todo.name}</li>`
+                            })
+                            div.classList.remove('error')
+                            div.classList.add('success')
+                            div.innerHTML = '<p style="font-weight: bold; margin-left: 20px;">Todos From Our Database:</p><ul>' + items.join('') + '</ul>'
+                        }
                     })
             });
         </script>

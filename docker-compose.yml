@@ -14,3 +14,5 @@ services:
     build: .
     ports:
       - 3000:80
+    environment:
+      - POSTGRES_URL=postgresql://hw:hw@db:5432/hw

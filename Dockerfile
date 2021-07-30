@@ -5,6 +5,7 @@ COPY public/ .
 
 WORKDIR /app
 COPY app.js .
+COPY prisma .
 COPY package.json .
 RUN npm install
 

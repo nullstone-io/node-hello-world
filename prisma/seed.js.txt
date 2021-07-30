@@ -1,0 +1,15 @@
+import Prisma from '@prisma/client'
+const { PrismaClient } = Prisma;
+const prisma = new PrismaClient();
+
+export async function seed() {
+    const todo1 = await prisma.todos.upsert({
+        where: { name: 'Try out Nullstone' },
+        update: {},
+        create: {
+            name: 'Try out Nullstone',
+            completed: false
+        }
+    })
+    console.log({ todo1 })
+}

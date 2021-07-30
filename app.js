@@ -1,14 +1,13 @@
-const { PrismaClient } = require('@prisma/client')
-const express = require('express'), morgan = require('morgan');
-const app = express();
-const port = process.env.PORT || 3000,
-    env = process.env.NULLSTONE_ENV || 'local';
-const prisma = new PrismaClient();
+import express from 'express';
+import morgan from 'morgan';
+import Prisma from '@prisma/client';
 
-async function getTodos() {
-    const todos = await prisma.todo.findMany()
-    console.log(todos)
-}
+const app = express();
+const port = process.env.PORT || 3000
+const env = process.env.NULLSTONE_ENV || 'local';
+
+const { PrismaClient } = Prisma;
+const prisma = new PrismaClient();
 
 app.use(morgan('combined'))
 app.use(express.static('public'));
@@ -18,10 +17,12 @@ app.get('/', function (req, res) {
 
 app.get('/todos', async (req, res) => {
     try {
-        const todos = await prisma.todo.findMany()
-        res.json(todos)
-    } finally {
-        await prisma.$disconnect()
+        const todos = await prisma.todos.findMany()
+        res.json({ data: todos })
+    } catch (e) {
+        console.log(e)
+        res.status(500)
+        res.json({ error: e.message })
     }
 })
 
