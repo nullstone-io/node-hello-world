@@ -32,7 +32,7 @@ a {
 }
 .home .hero img {
     max-width: 100%;
-    max-height: 200px;
+    max-height: 150px;
     display: block;
     margin: 3rem auto 1.5rem;
 }
@@ -195,4 +195,27 @@ a {
     src: url("/assets/fonts/metropolis/Metropolis-BlackItalic.otf");
     font-weight: 800;
     font-style: italic;
+}
+
+.error {
+    padding: .5em;
+    border: solid 1px rgb(197, 48, 48);
+    border-radius: .25em;
+    background-color: rgb(255, 245, 245);
+    color: rgb(197, 48, 48);
+    text-align: left;
+}
+
+.success {
+    padding: .5em;
+    border: solid 1px #2f855a;
+    border-radius: .25em;
+    background-color: rgb(245, 255, 245);
+    color: #2f855a;
+    text-align: left;
+}
+
+.error pre {
+    margin-left: 20px;
+    white-space: pre-wrap;
 }
