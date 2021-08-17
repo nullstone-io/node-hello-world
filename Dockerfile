@@ -11,4 +11,4 @@ RUN npm install
 
 ENV PORT=80
 
-CMD ["node", "app.js"]
+CMD npm run migrate --force && node app.js
