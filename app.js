@@ -1,6 +1,7 @@
 import express from 'express';
 import morgan from 'morgan';
 import Prisma from '@prisma/client';
+import { MongoClient } from "mongodb";
 
 const app = express();
 const port = process.env.PORT || 3000
@@ -23,6 +24,29 @@ app.get('/todos', async (req, res) => {
         console.log(e)
         res.status(500)
         res.json({ error: e.message })
+    }
+})
+
+app.get('/mongo', async (req, res) => {
+    const client = new MongoClient(process.env.MONGODB_URL)
+    try {
+        await client.connect()
+    } catch (e) {
+        console.log("Unable to connect", e)
+        res.status(500)
+        res.json({ error: e.message })
+        return
+    }
+
+    try {
+        const databasesList = await client.db().admin().listDatabases()
+        res.json(databasesList.databases)
+    } catch (e) {
+        console.log(e)
+        res.status(500)
+        res.json({ error: e.message })
+    } finally {
+        await client.close()
     }
 })
 
