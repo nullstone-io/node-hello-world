@@ -6,6 +6,10 @@ import { MongoClient } from "mongodb";
 const app = express();
 const port = process.env.PORT || 3000
 const env = process.env.NULLSTONE_ENV || 'local';
+const {
+    MONGO_DB,
+    MONGO_URL
+} = process.env;
 
 const { PrismaClient } = Prisma;
 const prisma = new PrismaClient();
@@ -28,7 +32,7 @@ app.get('/todos', async (req, res) => {
 })
 
 app.get('/mongo', async (req, res) => {
-    const client = new MongoClient(process.env.MONGODB_URL)
+    const client = new MongoClient(MONGO_URL)
     try {
         await client.connect()
     } catch (e) {
@@ -38,9 +42,11 @@ app.get('/mongo', async (req, res) => {
         return
     }
 
+    const db = client.db(MONGO_DB)
+
     try {
-        const databasesList = await client.db().admin().listDatabases()
-        res.json(databasesList.databases)
+        const todos = await db.collection("todos").find().toArray()
+        res.json(todos)
     } catch (e) {
         console.log(e)
         res.status(500)
