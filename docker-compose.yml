@@ -2,17 +2,18 @@ version: '3.8'
 
 services:
   db:
-    image: postgres
+    image: mysql:8
     ports:
-      - 5469:5432
+      - "3406:3306"
     environment:
-      - POSTGRES_USER=hw
-      - POSTGRES_PASSWORD=hw
-      - POSTGRES_DB=hw
+      - MYSQL_ROOT_PASSWORD=hw
+      - MYSQL_USER=hw
+      - MYSQL_PASSWORD=hw
+      - MYSQL_DATABASE=hw
 
   server:
     build: .
     ports:
-      - 3000:80
+      - "3000:80"
     environment:
-      - POSTGRES_URL=postgresql://hw:hw@db:5432/hw
+      - MYSQL_URL=mysql://hw:hw@db:3306/hw
