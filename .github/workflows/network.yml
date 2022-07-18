@@ -1,0 +1,58 @@
+name: Network
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  plan-staging:
+    name: Plan staging
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Init
+        run: echo 'init'
+      - name: Plan
+        run: echo 'terraform plan'
+
+  staging:
+    needs:
+      - plan-staging
+    name: Apply staging
+    runs-on: ubuntu-latest
+
+    environment:
+      name: staging
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Init
+        run: echo 'init'
+      - name: Apply
+        run: echo 'terraform apply'
+
+  plan-prod:
+    needs:
+      - staging
+    name: Plan prod
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Init
+        run: echo 'init'
+      - name: Plan
+        run: echo 'terraform plan'
+
+  prod:
+    needs:
+      - plan-prod
+    name: Apply prod
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Init
+        run: echo 'init'
+      - name: Apply
+        run: echo 'terraform apply'
