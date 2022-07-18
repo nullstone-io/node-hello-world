@@ -1,0 +1,15 @@
+on:
+  workflow_dispatch: {}
+
+jobs:
+  staging:
+    runs-on: ubuntu-latest
+    name: Apply staging
+    environment:
+      name: staging
+    steps:
+      - uses: actions/checkout@v2
+      - name: Init
+        run: echo 'init'
+      - name: Apply
+        run: echo 'terraform apply'
