@@ -2,6 +2,7 @@ import express from 'express';
 import morgan from 'morgan';
 import Prisma from '@prisma/client';
 
+const tracer = require('./tracing')("node-hello-world")
 const app = express();
 const port = process.env.PORT || 3000
 const env = process.env.NULLSTONE_ENV || 'local';
