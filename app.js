@@ -1,9 +1,12 @@
 import express from 'express';
 import morgan from 'morgan';
 import Prisma from '@prisma/client';
-import createTracer from './tracing';
+import createTracer from './tracing.js';
 
-const tracer = createTracer("node-hello-world");
+
+const appName = "core-webapp"; //TODO: process.env.NULLSTONE_APP
+const version = "dev"; //TODO: process.env.NULLSTONE_VERSION
+const tracer = createTracer(appName, version);
 const app = express();
 const port = process.env.PORT || 3000
 const env = process.env.NULLSTONE_ENV || 'local';

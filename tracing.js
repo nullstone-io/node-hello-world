@@ -12,11 +12,13 @@ const { HttpInstrumentation } = require("@opentelemetry/instrumentation-http");
 const { registerInstrumentations } = require("@opentelemetry/instrumentation");
 
 //Exporter
-module.exports = (serviceName) => {
+module.exports = (appName, version) => {
     const exporter = new OTLPTraceExporter();
     const provider = new NodeTracerProvider({
         resource: new Resource({
-            [SemanticResourceAttributes.SERVICE_NAME]: serviceName,
+            [SemanticResourceAttributes.DEPLOYMENT_ENVIRONMENT]: process.env.NULLSTONE_ENV,
+            [SemanticResourceAttributes.SERVICE_NAME]: appName,
+            [SemanticResourceAttributes.SERVICE_VERSION]: version,
         }),
     });
     provider.addSpanProcessor(new SimpleSpanProcessor(exporter));
@@ -28,5 +30,5 @@ module.exports = (serviceName) => {
         ],
         tracerProvider: provider,
     });
-    return trace.getTracer(serviceName);
+    return trace.getTracer(appName, version);
 };
