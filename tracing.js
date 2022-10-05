@@ -1,18 +1,18 @@
 //OpenTelemetry
-const { Resource } = require("@opentelemetry/resources");
-const { SemanticResourceAttributes } = require("@opentelemetry/semantic-conventions");
-const { SimpleSpanProcessor } = require("@opentelemetry/sdk-trace-base");
-const { NodeTracerProvider } = require("@opentelemetry/sdk-trace-node");
-const { trace } = require("@opentelemetry/api");
+import { Resource }  from "@opentelemetry/resources";
+import { SemanticResourceAttributes } from "@opentelemetry/semantic-conventions";
+import { SimpleSpanProcessor } from "@opentelemetry/sdk-trace-base";
+import { NodeTracerProvider } from "@opentelemetry/sdk-trace-node";
+import { trace } from "@opentelemetry/api";
 //Exporter
-const { OTLPTraceExporter } = require("@opentelemetry/exporter-trace-otlp-http");
+import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
 //instrumentations
-const { ExpressInstrumentation } = require("opentelemetry-instrumentation-express");
-const { HttpInstrumentation } = require("@opentelemetry/instrumentation-http");
-const { registerInstrumentations } = require("@opentelemetry/instrumentation");
+import { ExpressInstrumentation } from "opentelemetry-instrumentation-express";
+import { HttpInstrumentation } from "@opentelemetry/instrumentation-http";
+import { registerInstrumentations } from "@opentelemetry/instrumentation";
 
 //Exporter
-module.exports = (appName, version) => {
+export default function (appName, version) {
     const exporter = new OTLPTraceExporter();
     const provider = new NodeTracerProvider({
         resource: new Resource({
@@ -31,4 +31,4 @@ module.exports = (appName, version) => {
         tracerProvider: provider,
     });
     return trace.getTracer(appName, version);
-};
+}
