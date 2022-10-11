@@ -12,4 +12,4 @@ RUN npm install
 
 ENV PORT=80
 
-CMD npm run migrate --force && node app.js
+CMD npm run migrate --force && node -r ./tracing.js app.js

@@ -1,12 +1,8 @@
-import express from 'express';
-import morgan from 'morgan';
-import Prisma from '@prisma/client';
-import createTracer from './tracing.js';
+const process = require('process');
+const express = require('express');
+const morgan = require('morgan');
+const Prisma = require('@prisma/client');
 
-const appName = "core-webapp"; //TODO: process.env.NULLSTONE_APP
-const version = "dev"; //TODO: process.env.NULLSTONE_VERSION
-const envName = process.env.NULLSTONE_ENV || 'local';
-const tracer = createTracer(appName, version, envName);
 const app = express();
 const port = process.env.PORT || 3000
 
