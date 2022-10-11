@@ -3,13 +3,12 @@ import morgan from 'morgan';
 import Prisma from '@prisma/client';
 import createTracer from './tracing.js';
 
-
 const appName = "core-webapp"; //TODO: process.env.NULLSTONE_APP
 const version = "dev"; //TODO: process.env.NULLSTONE_VERSION
-const tracer = createTracer(appName, version);
+const envName = process.env.NULLSTONE_ENV || 'local';
+const tracer = createTracer(appName, version, envName);
 const app = express();
 const port = process.env.PORT || 3000
-const env = process.env.NULLSTONE_ENV || 'local';
 
 const { PrismaClient } = Prisma;
 const prisma = new PrismaClient();

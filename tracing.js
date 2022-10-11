@@ -12,11 +12,11 @@ import { HttpInstrumentation } from "@opentelemetry/instrumentation-http";
 import { registerInstrumentations } from "@opentelemetry/instrumentation";
 
 //Exporter
-export default function (appName, version) {
+export default function (appName, version, envName) {
     const exporter = new OTLPTraceExporter();
     const provider = new NodeTracerProvider({
         resource: new Resource({
-            [SemanticResourceAttributes.DEPLOYMENT_ENVIRONMENT]: process.env.NULLSTONE_ENV,
+            [SemanticResourceAttributes.DEPLOYMENT_ENVIRONMENT]: envName,
             [SemanticResourceAttributes.SERVICE_NAME]: appName,
             [SemanticResourceAttributes.SERVICE_VERSION]: version,
         }),
