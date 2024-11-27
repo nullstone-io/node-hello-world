@@ -1,0 +1,47 @@
+name: Build and Push Artifact
+
+# Trigger the workflow on push to the `main` branch
+on:
+  push:
+    branches:
+      - master
+
+  # Optionally trigger manually via `workflow_dispatch`
+  workflow_dispatch:
+
+jobs:
+  # Define a job named `build` that runs on the latest Ubuntu runner
+  build:
+    runs-on: ubuntu-latest
+
+    # Define the steps that will be executed in this job
+    steps:
+
+      # Step 1: Checkout the repository code
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Step 2: Set up Node.js (using version 16 as an example)
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      # Step 3: Install dependencies using npm
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Run tests (assuming you have tests defined in your project)
+      # - name: Run tests
+      #   run: npm test
+
+      # Step 5: Build the application (e.g., for production or deployment)
+      # - name: Build application
+      #   run: npm run build
+
+      # Optional: Upload build artifacts (if any) for later use
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifact
+          path: ./public/  # Example path to a build directory (adjust as needed)
