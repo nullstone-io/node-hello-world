@@ -12,11 +12,16 @@ on:
       NULLSTONE_ENV:
         description: 'The Nullstone environment for the application being built'
         required: true
+      NULLSTONE_VERSION:
+        description: 'The Nullstone version for the application being built'
+        required: true
+      NULLSTONE_COMMIT_SHA:
+        description: 'The Nullstone commit sha for the application being built'
+        required: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
