@@ -1,4 +1,5 @@
 name: Build and Push Artifact
+run-name: $${{ github.actor }}-$${{ github.sha }}
 
 on:
   workflow_dispatch:
@@ -22,7 +23,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -50,7 +51,7 @@ jobs:
           docker save ${{ github.sha }} -o image.tar
 
       - name: Upload Docker image as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: docker-image
           path: image.tar
