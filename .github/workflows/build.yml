@@ -42,7 +42,7 @@ jobs:
 
       - name: Save Docker image as gzipped tarball
         run: |
-          docker save -o image.tar ${{ github.sha }} | gzip > image.tar.gz
+          docker save ${{ github.sha }} | gzip > image.tar.gz
 
       - name: Upload Docker image as artifact
         uses: actions/upload-artifact@v4
