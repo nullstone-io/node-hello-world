@@ -17,7 +17,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -42,11 +41,11 @@ jobs:
 
       - name: Save Docker image as tarball
         run: |
-          docker save -o image.tar ${{ inputs.NULLSTONE_APP }}:${{ inputs.NULLSTONE_VERSION }}
+          docker save -o docker-image.tar ${{ inputs.NULLSTONE_APP }}:${{ inputs.NULLSTONE_VERSION }}
 
       - name: Upload Docker image as artifact
         uses: actions/upload-artifact@v4
         with:
           name: docker-image
-          path: image.tar
+          path: docker-image.tar
           retention-days: 7
