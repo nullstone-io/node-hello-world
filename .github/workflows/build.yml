@@ -36,17 +36,13 @@ jobs:
       # - name: Build application
       #   run: npm run build
 
-      - name: Set vars
-        id: vars
-        run: echo "sha_short=$(git rev-parse --short ${{ github.sha }})" >> $GITHUB_OUTPUT
-
       - name: Build docker image
         run: |
-          docker build -t ${{ inputs.NULLSTONE_APP }}:${{ steps.vars.outputs.sha_short }} .
+          docker build -t ${{ inputs.NULLSTONE_APP }}:${{ inputs.NULLSTONE_VERSION }} .
 
       - name: Save Docker image as tarball
         run: |
-          docker save -o image.tar ${{ inputs.NULLSTONE_APP }}:${{ steps.vars.outputs.sha_short }}
+          docker save -o image.tar ${{ inputs.NULLSTONE_APP }}:${{ inputs.NULLSTONE_VERSION }}
 
       - name: Upload Docker image as artifact
         uses: actions/upload-artifact@v4
