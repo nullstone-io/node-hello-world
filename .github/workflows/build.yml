@@ -21,7 +21,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: nullstone-io/setup-nullstone-action@v0
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -54,6 +53,7 @@ jobs:
       #     path: docker-image.tar
       #    retention-days: 7
 
+      - uses: nullstone-io/setup-nullstone-action@v0
       - name: Nullstone push
         env:
           NULLSTONE_API_KEY: ${{ secrets.SSICKLES_NULLSTONE_API_KEY }}
