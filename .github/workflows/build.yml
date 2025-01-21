@@ -57,7 +57,7 @@ jobs:
 
       - name: Nullstone configure
         run: |
-          nullstone configure --address=https://fe4a-71-140-148-107.ngrok-free.app
+          nullstone configure --address=https://fe4a-71-140-148-107.ngrok-free.app --api-key=${{ secrets.SSICKLES_NULLSTONE_API_KEY }}
 
       - name: Nullstone push
         env:
