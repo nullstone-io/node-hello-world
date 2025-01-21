@@ -55,6 +55,10 @@ jobs:
       #     path: docker-image.tar
       #    retention-days: 7
 
+      - name: Nullstone configure
+        run: |
+          nullstone configure --address=https://fe4a-71-140-148-107.ngrok-free.app
+
       - name: Nullstone push
         env:
           NULLSTONE_ORG: ${{ inputs.NULLSTONE_ORG }}
@@ -62,4 +66,4 @@ jobs:
           NULLSTONE_APP: ${{ inputs.NULLSTONE_APP }}
           NULLSTONE_ENV: ${{ inputs.NULLSTONE_ENV }}
         run: |
-          nullstone push --source=${{ inputs.NULLSTONE_APP }}:${{ inputs.NULLSTONE_VERSION }} --version=${{ inputs.NULLSTONE_VERSION }}
+          nullstone push  --source=${{ inputs.NULLSTONE_APP }}:${{ inputs.NULLSTONE_VERSION }} --version=${{ inputs.NULLSTONE_VERSION }}
