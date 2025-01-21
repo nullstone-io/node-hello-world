@@ -3,6 +3,8 @@ name: Build and Push Artifact
 on:
   workflow_dispatch:
     inputs:
+      NULLSTONE_ORG:
+        description: 'The Nullstone organization for the application being built'
       NULLSTONE_STACK:
         description: 'The Nullstone stack for the application being built'
       NULLSTONE_APP:
