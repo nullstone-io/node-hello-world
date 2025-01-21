@@ -21,6 +21,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: nullstone-io/setup-nullstone-action@v0
+
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -53,13 +55,11 @@ jobs:
       #     path: docker-image.tar
       #    retention-days: 7
 
-      - uses: nullstone-io/setup-nullstone-action@v0
       - name: Nullstone push
         env:
-          NULLSTONE_API_KEY: ${{ secrets.SSICKLES_NULLSTONE_API_KEY }}
           NULLSTONE_ORG: ${{ inputs.NULLSTONE_ORG }}
           NULLSTONE_STACK: ${{ inputs.NULLSTONE_STACK }}
           NULLSTONE_APP: ${{ inputs.NULLSTONE_APP }}
           NULLSTONE_ENV: ${{ inputs.NULLSTONE_ENV }}
-        run: nullstone push --source=${{ inputs.NULLSTONE_APP }}:${{ inputs.NULLSTONE_VERSION }} --version=${{ inputs.NULLSTONE_VERSION }}
-        shell: bash
+        run: |
+          nullstone push --source=${{ inputs.NULLSTONE_APP }}:${{ inputs.NULLSTONE_VERSION }} --version=${{ inputs.NULLSTONE_VERSION }}
