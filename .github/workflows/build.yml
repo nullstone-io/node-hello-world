@@ -60,6 +60,6 @@ jobs:
           NULLSTONE_APP: ${{ inputs.NULLSTONE_APP }}
           NULLSTONE_ORG: ${{ inputs.NULLSTONE_ORG }}
           NULLSTONE_STACK: ${{ inputs.NULLSTONE_STACK }}
-          NULLSTONE_API_KEY: ${{ secrets.NULLSTONE_API_KEY }}
+          NULLSTONE_API_KEY: ${{ secrets.SSICKLES_NULLSTONE_API_KEY }}
         run: nullstone push --source=${{ inputs.NULLSTONE_APP }}:${{ inputs.NULLSTONE_VERSION }} --version=${{ inputs.NULLSTONE_VERSION }}
         shell: bash
